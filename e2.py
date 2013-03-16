@@ -12,12 +12,13 @@ import numpy as np
 def fib(s=(1,2), limit=89):
     if s[-1] < limit:
         t = sum(s[-2:])
-        return fib(s + (t,))
+        return fib(s + (t,),limit=limit)
     elif s[-1] == limit:
-        print 'right on',s[-1],limit
+        print 'right on',s[-1],'==',limit
         return np.array(s)
     elif s[-1] > limit:
-        print 'went over',s[-2],limit
+        print 'went over',s[-1],'>',limit
+        print 'ending at',s[-2]
         return np.array(s[:-1])
 
 def seven(s):
