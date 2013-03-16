@@ -21,12 +21,26 @@ def fib(s=(1,2), limit=89):
         print 'ending at',s[-2]
         return np.array(s[:-1])
 
+def gfib(limit):
+    a,b = 1,1
+    yield 1
+    yield 1
+    while b < limit:
+        c = a + b
+        if c <= limit:
+            yield c
+            a, b = b, c
+        else:
+            break
+
 def seven(s):
     s = np.asarray(s)
     return s[s%2==0].sum()
 
 
-#if seven(fib(s=(1,2),limit=89)) == seven([1, 2, 3, 5, 8, 13, 21, 34, 55, 89]):
-print 'sum_evens:',seven(fib(s=(1,2),limit=4e6))
+if __name__=='__main__':
+    limit = 4e6
+    #print 'sum_evens:',seven(fib(limit=limit))
+    print sum(n for n in gfib(limit) if n%2==0)
     
 
