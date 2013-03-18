@@ -20,6 +20,29 @@ def prime_fs(n):
         while n%p == 0:
             n /= p
             ps.append(p)
-    return ps
+    return ps if ps else [n]
 
+def pcount(n):
+    """ generate a dictionary of primes and their count for the prime factorizatio of n """
+    pcount = { p:0 for p in n_primes(n) }
+    fs = range(2,n+1)
+    pfs = map(prime_fs, fs)
+
+    for f, pf in zip(fs,pfs):
+        for p in pf:
+            pc = pf.count(p)
+            if pc > pcount[p]:
+                pcount[p] = pc
+
+    return pcount
+
+def smallest_multiple(n):
+    """ returns smallest multiple of all numbers 1..n """
+    m = 1
+    for p,c in pcount(n).items():
+        m *= p**c
+    return m
+
+if __name__ == '__main__':
+    print smallest_multiple(20)
 
