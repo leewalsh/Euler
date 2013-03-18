@@ -6,7 +6,7 @@
 # 
 # Find the largest palindrome made from the product of two 3-digit numbers.
 
-def ispalindrome(n):
+def is_palindrome(n):
     """ return True if n is a palindrome, else False """
     #assert isinstance(n,int), "Can only check ints for palindrome"
     s = str(n)
@@ -25,10 +25,10 @@ def three_dig_prod():
                         for j in xrange(i, -1, -1):
                             yield (ih + it + i) * (jh + jt + j), (ih + it + i), (jh + jt + j)
 
-def findbiggest():
+def find_biggest():
     pmax = 0
     for p,i,j in three_dig_prod():
-        if ispalindrome(p):
+        if is_palindrome(p):
             print "{} x {} = {:6} is a palindrome".format(i,j,p)
             pmax = p if p>pmax else pmax
     print pmax,"is the largest"

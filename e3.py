@@ -13,7 +13,7 @@ def factors(n):
     """
     return ( i for i in xrange(1 + n/2, 1, -1) if n%i==0 and i!=n)
 
-def isprime(p):
+def is_prime(p):
     """ return True if p is prime, else False """
     if p==1:
         return False
@@ -29,7 +29,7 @@ def n_primes(n):
     """ return generator for all primes under n
         in increasing order
     """
-    return ( p for p in xrange(2,n,1) if isprime(p) )
+    return ( p for p in xrange(2,n,1) if is_prime(p) )
 
 def reduced_factors(n):
     """ returns generator of *reduced* factors of n
@@ -46,16 +46,16 @@ def reduced_factors(n):
             pmax = p
     return pmax, n, factors(n)
         
-def biggestprime(n):
+def biggest_prime(n):
     p,m,fs = reduced_factors(n)
-    if m > p and isprime(m):
+    if m > p and is_prime(m):
         return m
 
     for f in fs:
-        if f > p and isprime(f):
+        if f > p and is_prime(f):
             return f
     else:
         return p
 
 if __name__ == '__main__':
-    print biggestprime(600851475143)
+    print biggest_prime(600851475143)
