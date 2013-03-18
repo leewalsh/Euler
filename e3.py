@@ -46,7 +46,7 @@ def reduced_factors(n):
             pmax = p
     return pmax, n, factors(n)
         
-def biggest_prime(n):
+def largest_prime_factor(n):
     p,m,fs = reduced_factors(n)
     if m > p and is_prime(m):
         return m
@@ -58,4 +58,4 @@ def biggest_prime(n):
         return p
 
 if __name__ == '__main__':
-    print biggest_prime(600851475143)
+    print largest_prime_factor(600851475143)
