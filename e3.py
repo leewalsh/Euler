@@ -6,8 +6,6 @@
 #
 # What is the largest prime factor of the number 600851475143 ?
 
-from numpy import sqrt
-
 def factors(n):
     """ returns generator of all factors of n
         in decreasing order
@@ -16,6 +14,7 @@ def factors(n):
     return ( i for i in xrange(1 + n/2, 1, -1) if n%i==0 and i!=n)
 
 def isprime(p):
+    """ return True if p is prime, else False """
     if p==1:
         return False
     if p==2:
@@ -25,8 +24,6 @@ def isprime(p):
         return False
     except StopIteration:
         return True
-    #alternatively:
-    #return not list(factors(p))
 
 def n_primes(n):
     """ return generator for all primes under n
@@ -47,19 +44,15 @@ def reduced_factors(n):
         while n%p == 0:
             n /= p
             pmax = p
-    print 'n is now:',n
     return pmax, n, factors(n)
         
 def biggestprime(n):
-    print 'looking for biggest prime factor of',n
     p,m,fs = reduced_factors(n)
-    print 'p:',p
     if m > p and isprime(m):
         return m
 
     for f in fs:
         if f > p and isprime(f):
-            print f,'is prime'
             return f
     else:
         return p
